@@ -1,0 +1,26 @@
+﻿@page
+@model TestPlayWright.Web.Pages.Test.IndexModel
+@{
+}
+<h1>Enter Fullsize Kana</h1>
+<form id="kanaForm">
+    <label for="kanaInput">Kana Input:</label>
+    <input type="text" id="kanaInput" name="kanaInput" placeholder="Enter Hiragana or Katakana" required>
+    <span class="error" id="error">Please enter full-size Kana characters only!</span>
+    <button type="submit">Submit</button>
+</form>
+
+<script>
+    document.getElementById('kanaForm').addEventListener('submit', function (event) {
+        const kanaInput = document.getElementById('kanaInput').value;
+        const kanaRegex = /^[\u3040-\u30FF]+$/; // Regex for Hiragana and Katakana range
+        const errorElement = document.getElementById('error');
+        debugger;
+        if (!kanaRegex.test(kanaInput)) {
+            event.preventDefault();
+            errorElement.style.display = 'block';
+        } else {
+            errorElement.style.display = 'none';
+        }
+    });
+</script>
